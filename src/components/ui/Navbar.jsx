@@ -1,13 +1,21 @@
-'use client';
+"use client";
 
 import { useState } from "react";
-import { Search, ShoppingCart, ChevronDown, MapPin, User, Menu, X } from "lucide-react";
+import {
+  Search,
+  ShoppingCart,
+  ChevronDown,
+  MapPin,
+  User,
+  Menu,
+  X,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./dropdown-menu";
+} from "../../../components/ui/dropdown-menu";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -18,16 +26,12 @@ const Navbar = () => {
     <nav className="w-full bg-white shadow-sm relative">
       {/* Top Bar */}
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Left Section - Logo & Mobile Menu Toggle */}
-        <div className="flex items-center space-x-4">
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6 text-gray-700" /> : <Menu className="h-6 w-6 text-gray-700" />}
-          </button>
-          <img src="../assets/pinnacle-logo.webp" alt="Pinnacle Tools Center" className="w-16 h-16 rounded-full" />
-        </div>
+        {/* Logo */}
+        <img
+          src="../assets/pinnacle-logo.webp"
+          alt="Pinnacle Tools Center"
+          className="w-16 h-16 rounded-full"
+        />
 
         {/* Desktop Search Bar */}
         <div className="hidden md:flex items-center flex-1 max-w-xl mx-8">
@@ -74,6 +78,18 @@ const Navbar = () => {
               <p className="font-medium">Cart</p>
             </div>
           </button>
+
+          {/* Mobile Menu Toggle on Right */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6 text-gray-700" />
+            ) : (
+              <Menu className="h-6 w-6 text-gray-700" />
+            )}
+          </button>
         </div>
       </div>
 
@@ -82,7 +98,9 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center space-x-8">
-              <a href="/" className="text-[#003366] font-medium">Home</a>
+              <a href="/" className="text-[#003366] font-medium">
+                Home
+              </a>
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
                   Categories
@@ -105,18 +123,9 @@ const Navbar = () => {
                   <DropdownMenuItem>Product 3</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
-                  Pages
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem>Page 1</DropdownMenuItem>
-                  <DropdownMenuItem>Page 2</DropdownMenuItem>
-                  <DropdownMenuItem>Page 3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <a href="/offers" className="text-[#FFD700] font-medium">Offers</a>
+              <a href="/offers" className="text-[#FFD700] font-medium">
+                Offers
+              </a>
             </div>
             <button className="flex items-center text-gray-600 hover:text-[#003366]">
               <MapPin className="h-5 w-5" />
@@ -127,27 +136,66 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Sidebar Menu */}
-      {isMobileMenuOpen && (
-        <div className="absolute top-0 left-0 w-64 h-full bg-white shadow-md z-50 p-4 flex flex-col space-y-4">
-          <button className="self-end p-2" onClick={() => setIsMobileMenuOpen(false)}>
-            <X className="h-6 w-6 text-gray-700" />
-          </button>
+      {/* Mobile Sidebar Menu with Animation */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-[#fd714c] to-[#ffc107] shadow-lg text-white p-6 z-50 transform ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <button
+          className="absolute top-4 right-4"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          <X className="h-6 w-6 text-white" />
+        </button>
+
+        {/* Search Bar - Moved Down */}
+        <div className="mt-10">
           <input
             type="text"
             placeholder="Search products..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <a href="/" className="text-[#003366] font-medium">Home</a>
-          <a href="/categories" className="text-[#003366] font-medium">Categories</a>
-          <a href="/products" className="text-[#003366] font-medium">Products</a>
-          <a href="/pages" className="text-[#003366] font-medium">Pages</a>
-          <a href="/offers" className="text-[#FFD700] font-medium">Offers</a>
         </div>
-      )}
+
+        <nav className="mt-6 flex flex-col space-y-4">
+          <a href="/" className="text-white font-medium">
+            Home
+          </a>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center justify-between text-white">
+              Categories
+              <ChevronDown className="ml-2 h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-white text-black w-48 rounded-lg shadow-md">
+              <DropdownMenuItem>Category 1</DropdownMenuItem>
+              <DropdownMenuItem>Category 2</DropdownMenuItem>
+              <DropdownMenuItem>Category 3</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center justify-between text-white">
+              Products
+              <ChevronDown className="ml-2 h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-white text-black w-48 rounded-lg shadow-md">
+              <DropdownMenuItem>Product 1</DropdownMenuItem>
+              <DropdownMenuItem>Product 2</DropdownMenuItem>
+              <DropdownMenuItem>Product 3</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <a href="/offers" className="text-[#FFD700] font-medium">
+            Offers
+          </a>
+        </nav>
+      </div>
     </nav>
   );
 };
+
 export default Navbar;

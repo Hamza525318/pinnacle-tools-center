@@ -1,4 +1,11 @@
-import { Geist, Geist_Mono,Oswald,Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Oswald, Roboto } from "next/font/google";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 import "./globals.css";
 import Navbar from "../components/ui/Navbar";
 import Footer from "../components/ui/FooterSection";
@@ -36,9 +43,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${roboto.variable} antialiased`}
       >
-        <Navbar/>
+        <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

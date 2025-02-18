@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, User, Send } from "lucide-react";
 import { Button } from "../../components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Textarea } from "@/components/ui/textarea";
+import { Input } from "../../../components/ui/input";
+import { Textarea } from "../../../components/ui/textarea";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -28,7 +28,9 @@ export default function ContactPage() {
       {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-bold">Get in touch!</h2>
-        <p className="text-gray-300 mt-2">Fill up the form and our team will get back to you within 24 hours.</p>
+        <p className="text-gray-300 mt-2">
+          Fill up the form and our team will get back to you within 24 hours.
+        </p>
       </div>
 
       {/* Contact Info Boxes */}
@@ -49,12 +51,15 @@ export default function ContactPage() {
 
       {/* Contact Form */}
       <div className="bg-white text-gray-900 p-8 rounded-lg shadow-lg w-full max-w-3xl">
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
           {/* Left Side */}
           <div className="space-y-4">
             <div className="relative">
               <User className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
-              <input
+              <Input
                 type="text"
                 name="name"
                 placeholder="Your Name"
@@ -65,7 +70,7 @@ export default function ContactPage() {
             </div>
             <div className="relative">
               <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
-              <input
+              <Input
                 type="email"
                 name="email"
                 placeholder="Your Email"
@@ -76,7 +81,7 @@ export default function ContactPage() {
             </div>
             <div className="relative">
               <Phone className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
-              <input
+              <Input
                 type="tel"
                 name="phone"
                 placeholder="Your Phone"
@@ -89,7 +94,7 @@ export default function ContactPage() {
 
           {/* Right Side */}
           <div>
-            <textarea
+            <Textarea
               name="message"
               placeholder="Message"
               rows={5}
@@ -116,7 +121,10 @@ export default function ContactPage() {
 
           {/* Submit Button */}
           <div className="col-span-2 flex justify-center">
-            <Button type="submit" className="text-black bg-transparent border border-p-blue-100 px-6 py-3 rounded-md flex items-center space-x-2">
+            <Button
+              type="submit"
+              className="text-black bg-transparent border border-p-blue-100 px-6 py-3 rounded-md flex items-center space-x-2"
+            >
               <Send className="h-5 w-5" />
               <span>Send Message</span>
             </Button>
