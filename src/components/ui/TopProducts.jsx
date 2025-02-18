@@ -3,14 +3,14 @@
 import Image from 'next/image';
 
 const products = [
-  { id: 1, label: "NEW", category: "Chocos", title: "Mixed Fruits Chocolates Pack", price: 25, oldPrice: 30, stock: "1 Pack", rating: 4, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" },
-  { id: 2, label: "HOT", category: "Juice", title: "Organic Apple Juice Pack", price: 15, oldPrice: null, stock: "3 Left", rating: 5, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" },
-  { id: 3, label: "", category: "Juice", title: "Mixed Almond Nuts Juice Pack", price: 32, oldPrice: 39, stock: "250 g", rating: 5, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" },
-  { id: 4, label: "SALE", category: "Fruits", title: "Fresh Mango Slice Juice", price: 25, oldPrice: null, stock: "Out Of Stock", rating: 4, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" },
-  { id: 5, label: "", category: "Snacks", title: "Crunchy Cashew Nuts", price: 18, oldPrice: 22, stock: "500 g", rating: 5, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" },
-  { id: 6, label: "BESTSELLER", category: "Tea", title: "Organic Green Tea", price: 12, oldPrice: null, stock: "50 Bags", rating: 4, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" },
-  { id: 7, label: "", category: "Bakery", title: "Fresh Butter Croissants", price: 20, oldPrice: 24, stock: "6 Pieces", rating: 5, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" },
-  { id: 8, label: "LIMITED", category: "Energy Drinks", title: "Protein Power Drink", price: 28, oldPrice: 35, stock: "2 Left", rating: 4, image: "https://www.perfecttoolsindustries.com/wp-content/uploads/2022/07/CNC-Router-Bits.png" }
+  { id: 1, label: "NEW", category: "Chocos", title: "Router Bits", price: 25, oldPrice: 30, stock: "1 Pack", rating: 4, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" },
+  { id: 2, label: "HOT", category: "Juice", title: "Router Bits", price: 15, oldPrice: null, stock: "3 Left", rating: 5, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" },
+  { id: 3, label: "", category: "Juice", title: "Router Bits", price: 32, oldPrice: 39, stock: "250 g", rating: 5, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" },
+  { id: 4, label: "SALE", category: "Fruits", title: "Router Bits", price: 25, oldPrice: null, stock: "Out Of Stock", rating: 4, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" },
+  { id: 5, label: "", category: "Snacks", title: "Router Bits", price: 18, oldPrice: 22, stock: "500 g", rating: 5, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" },
+  { id: 6, label: "BESTSELLER", category: "Tea", title: "Router Bits", price: 12, oldPrice: null, stock: "50 Bags", rating: 4, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" },
+  { id: 7, label: "", category: "Bakery", title: "Router Bits", price: 20, oldPrice: 24, stock: "6 Pieces", rating: 5, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" },
+  { id: 8, label: "LIMITED", category: "Energy Drinks", title: "Router Bits", price: 28, oldPrice: 35, stock: "2 Left", rating: 4, image: "https://vijayshreetools.com/assets/images/products/router_bits/beading_flat_bits/beading_flat_bits_01.jpg" }
 ];
 
 export default function TopProducts() {
@@ -26,17 +26,18 @@ export default function TopProducts() {
             
             {/* Product Image */}
             <div className="relative">
-              <img src={product.image} alt={product.title} width={200} height={200} className="rounded-md w-full object-cover" />
+              <img src={product.image} alt={product.title} className="rounded-md w-56 object-cover md:64" />
             </div>
             
             {/* Product Details */}
             <div className="mt-4">
               {/* Category and Star Ratings (Same row on desktop, separate on mobile) */}
+              <div className='w-full h-[2px] bg-gray-100'></div>
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                 <p className="text-xs text-gray-500">{product.category}</p>
                 <div className="flex mt-1 sm:mt-0">
                   {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index} className={`text-yellow-500 text-sm ${index < product.rating ? 'opacity-100' : 'opacity-30'}`}>
+                    <span key={index} className={`text-yellow-500 text-base ${index < product.rating ? 'opacity-100' : 'opacity-30'}`}>
                       ★
                     </span>
                   ))}

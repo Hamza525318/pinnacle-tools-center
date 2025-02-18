@@ -34,13 +34,13 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="w-full md:w-1/2 text-center md:text-left mt-6 md:mt-0 px-4"
         >
-          <p className="text-md md:text-lg mb-6 text-off-white font-roboto text-shadow">
+          <p className="text-md md:text-xl mb-6 text-off-white font-roboto text-shadow">
             Explore a curated selection of router bits and CNC cutting tools
             designed for professionals and DIY enthusiasts alike. Experience the
             perfect blend of innovation, quality, and affordability.
           </p>
 
-          <p className=" text-sm text-off-white my-2">
+          <p className=" text-lg font-roboto text-off-white my-2">
             Trusted by thousands of professionals worldwide.
           </p>
 

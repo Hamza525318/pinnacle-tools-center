@@ -40,7 +40,7 @@ const Navbar = () => {
               <span className="text-gray-600">Products</span>
               <ChevronDown className="ml-2 h-4 w-4 text-gray-500" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48">
+            <DropdownMenuContent className="w-48 bg-white z-[9999]">
               <DropdownMenuItem>Router Bits</DropdownMenuItem>
               <DropdownMenuItem>CNC Bits</DropdownMenuItem>
               <DropdownMenuItem>V Groove Blades</DropdownMenuItem>
@@ -101,12 +101,12 @@ const Navbar = () => {
               <a href="/" className="text-[#003366] font-medium">
                 Home
               </a>
-              <DropdownMenu>
+              <DropdownMenu className="bg-white">
                 <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
                   Categories
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className=" bg-white z-[9999]">
                   <DropdownMenuItem>Category 1</DropdownMenuItem>
                   <DropdownMenuItem>Category 2</DropdownMenuItem>
                   <DropdownMenuItem>Category 3</DropdownMenuItem>
@@ -117,7 +117,7 @@ const Navbar = () => {
                   Products
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className="bg-white z-[9999]">
                   <DropdownMenuItem>Product 1</DropdownMenuItem>
                   <DropdownMenuItem>Product 2</DropdownMenuItem>
                   <DropdownMenuItem>Product 3</DropdownMenuItem>

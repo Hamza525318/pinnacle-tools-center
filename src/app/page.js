@@ -7,6 +7,7 @@ import TopProducts from "../components/ui/TopProducts";
 import CTASection from "../components/ui/CTASection";
 import OurServices from "../components/ui/OurServices";
 import TestimonialSection from "../components/ui/TestimonialSection";
+import BrandsSection from "../components/ui/BrandsSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
     <HeroSection/>
     <ProductGallery/>
     <AboutSection/>
+    <BrandsSection/>
     <CategoriesSection/>
     <TopProducts/>
     <CTASection/>
