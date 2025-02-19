@@ -24,7 +24,7 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="w-full min-h-screen bg-gradient-to-tr from-[#004E64] via-[#005F73] to-[#003366] text-white flex flex-col items-center py-16">
+    <section className="w-full min-h-screen bg-[#001F3F] text-white flex flex-col items-center py-16">
       {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-bold">Get in touch!</h2>
@@ -50,20 +50,20 @@ export default function ContactPage() {
       </div>
 
       {/* Contact Form */}
-      <div className="bg-white text-gray-900 p-8 rounded-lg shadow-lg w-full max-w-3xl">
+      <div className="bg-white text-gray-900 p-8 rounded-lg shadow-lg w-full max-w-4xl md:p-12 mb-12">
         <form
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {/* Left Side */}
           <div className="space-y-4">
-            <div className="relative">
+            <div className="relative flex items-center">
               <User className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
               <Input
                 type="text"
                 name="name"
                 placeholder="Your Name"
-                className="pl-10"
+                className="pl-12 py-4 text-lg border border-gray-300 rounded-lg w-full"
                 onChange={handleChange}
                 required
               />
@@ -74,7 +74,7 @@ export default function ContactPage() {
                 type="email"
                 name="email"
                 placeholder="Your Email"
-                className="pl-10"
+                className="pl-12 py-4 text-lg border border-gray-300 rounded-lg w-full"
                 onChange={handleChange}
                 required
               />
@@ -85,7 +85,7 @@ export default function ContactPage() {
                 type="tel"
                 name="phone"
                 placeholder="Your Phone"
-                className="pl-10"
+                className="pl-12 py-4 text-lg border border-gray-300 rounded-lg w-full"
                 onChange={handleChange}
                 required
               />
@@ -97,39 +97,36 @@ export default function ContactPage() {
             <Textarea
               name="message"
               placeholder="Message"
-              rows={5}
+              rows={7} // Increased height
+              className="p-4 text-lg border border-gray-300 rounded-lg w-full"
               onChange={handleChange}
               required
             />
           </div>
 
-          {/* Services Selection */}
-          {/* <div className="col-span-2">
-            <p className="text-gray-700 font-semibold mb-2">Services</p>
-            <div className="flex flex-wrap gap-3">
-              {["Web Design", "Development", "Logo Design", "Other"].map((service, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition"
-                >
-                  {service}
-                </button>
-              ))}
-            </div>
-          </div> */}
-
           {/* Submit Button */}
           <div className="col-span-2 flex justify-center">
             <Button
               type="submit"
-              className="text-black bg-transparent border border-p-blue-100 px-6 py-3 rounded-md flex items-center space-x-2"
+              className="text-white bg-p-blue border border-p-blue px-8 py-3 rounded-md flex items-center space-x-2 hover:bg-blue-500"
             >
               <Send className="h-5 w-5" />
               <span>Send Message</span>
             </Button>
           </div>
         </form>
+      </div>
+
+      {/* Embedded Google Map */}
+      <div className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg">
+        <iframe
+          title="Google Maps Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509366!2d144.95373631531592!3d-37.81627977975186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577a6d12a5b8b1e!2s102%20Street%2C%20Hamilton!5e0!3m2!1sen!2sus!4v1616744850916!5m2!1sen!2sus"
+          width="100%"
+          height="400"
+          allowFullScreen={true}
+          loading="lazy"
+        />
       </div>
     </section>
   );
