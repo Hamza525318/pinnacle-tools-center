@@ -23,7 +23,7 @@ export default function BrandsSection() {
 
         <div className="relative w-full overflow-hidden">
           <motion.div
-            className="flex space-x-10"
+            className="flex w-screen space-x-10"
             initial={{ x: "100%" }}
             animate={{ x: "-100%" }}
             transition={{
@@ -34,7 +34,7 @@ export default function BrandsSection() {
           >
             {[...brands].map((brand, index) => (
               <div key={index} className="flex items-center justify-center w-screen">
-                <img src={brand} alt="Brand Logo" width={400} className="w-56 md:w-64" />
+                <img src={brand} alt={brand} width={400} className="w-56 md:w-64" />
               </div>
             ))}
           </motion.div>

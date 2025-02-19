@@ -81,7 +81,7 @@ export default function CategoriesSection() {
                     className={`p-6 ${category.bg} rounded-lg shadow-md flex flex-col items-center`}
                   >
                     <img className="w-20 md:24" src={category.icon}></img>
-                    <p className="text-lg font-semibold mt-2">
+                    <p className="text-base font-semibold mt-2">
                       {category.title}
                     </p>
                     <span className="text-gray-600 text-sm">

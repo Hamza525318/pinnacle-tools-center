@@ -25,8 +25,8 @@ export default function TopProducts() {
           <div key={product.id} className="border rounded-lg p-4 shadow-sm hover:shadow-md transition">
             
             {/* Product Image */}
-            <div className="relative">
-              <img src={product.image} alt={product.title} className="rounded-md w-56 object-cover md:64" />
+            <div className="relative flex justify-center">
+              <img src={product.image} alt={product.title} className="rounded-md text-center w-44 object-cover md:56" />
             </div>
             
             {/* Product Details */}
