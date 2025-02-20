@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Search,
   ShoppingCart,
@@ -17,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "../../../components/ui/dropdown-menu";
 import Image from "next/image";
+import AddToCartModal from "./AddToCartComponent"; // Importing the Cart Modal Component
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -71,15 +73,8 @@ const Navbar = () => {
               <p className="font-medium">Login</p>
             </div>
           </button>
-          <button className="flex items-center text-gray-700 hover:text-[#003366]">
-            <ShoppingCart className="h-5 w-5" />
-            <div className="ml-2 text-sm hidden md:block">
-              <p className="text-xs text-gray-500">4 items</p>
-              <p className="font-medium">Cart</p>
-            </div>
-          </button>
 
-          {/* Mobile Menu Toggle on Right */}
+          {/* Mobile Menu Toggle */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -93,50 +88,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Bottom Navigation - Desktop */}
-      <div className="hidden md:block border-t">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-3">
-            <div className="flex items-center space-x-8">
-              <a href="/" className="text-[#003366] font-medium">
-                Home
-              </a>
-              <DropdownMenu className="bg-white">
-                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
-                  Categories
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className=" bg-white z-[9999]">
-                  <DropdownMenuItem>Category 1</DropdownMenuItem>
-                  <DropdownMenuItem>Category 2</DropdownMenuItem>
-                  <DropdownMenuItem>Category 3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
-                  Products
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white z-[9999]">
-                  <DropdownMenuItem>Product 1</DropdownMenuItem>
-                  <DropdownMenuItem>Product 2</DropdownMenuItem>
-                  <DropdownMenuItem>Product 3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <a href="/offers" className="text-[#FFD700] font-medium">
-                Offers
-              </a>
-            </div>
-            <button className="flex items-center text-gray-600 hover:text-[#003366]">
-              <MapPin className="h-5 w-5" />
-              <span className="ml-2">Bangalore</span>
-              <ChevronDown className="ml-1 h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Sidebar Menu with Animation */}
+      {/* Mobile Sidebar Menu */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-[#fd714c] to-[#ffc107] shadow-lg text-white p-6 z-50 transform ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -194,6 +146,9 @@ const Navbar = () => {
           </a>
         </nav>
       </div>
+
+      {/* AddToCartModal Integrated */}
+      <AddToCartModal />
     </nav>
   );
 };

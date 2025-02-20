@@ -11,7 +11,7 @@ import {
 
 export default function ProductCard({ product }) {
   return (
-    <div className="p-2 rounded-lg shadow-sm hover:shadow-md transition flex flex-col h-full">
+    <div className="border border-gray-200 p-2 rounded-lg shadow-sm hover:shadow-md transition flex flex-col h-full">
       <div className="relative">
         <img
           src={product.image}
@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Content Wrapper - Ensuring Equal Height */}
-      <div className="flex flex-col flex-grow mt-4 min-h-[160px]">
+      <div className="flex flex-col flex-grow mt-4 min-h-[120px]">
         <h3 className="text-md font-semibold text-gray-800">{product.name}</h3>
 
         {/* Pricing */}

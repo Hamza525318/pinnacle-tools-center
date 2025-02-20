@@ -9,7 +9,6 @@ const brands = [
   "./assets/dealers/yuri_logo.webp",
   "./assets/dealers/john-bandari.png",
   "./assets/dealers/yuri_logo.webp",
-  "./assets/dealers/yuri_logo.webp",
   "./assets/dealers/perfect-licon-group.png",
 ];
 
@@ -23,18 +22,22 @@ export default function BrandsSection() {
 
         <div className="relative w-full overflow-hidden">
           <motion.div
-            className="flex w-screen space-x-10"
+            className="flex items-center space-x-10"
             initial={{ x: "100%" }}
             animate={{ x: "-100%" }}
             transition={{
               repeat: Infinity,
-              duration: 20,
+              duration: brands.length * 3, // Adjust speed dynamically
               ease: "linear",
             }}
           >
-            {[...brands].map((brand, index) => (
-              <div key={index} className="flex items-center justify-center w-screen">
-                <img src={brand} alt={brand} width={400} className="w-56 md:w-64" />
+            {[...brands, ...brands].map((brand, index) => (
+              <div key={index} className="flex items-center justify-center">
+                <img
+                  src={brand}
+                  alt="Brand Logo"
+                  className="w-auto h-auto max-w-[150px] md:max-w-[200px] lg:max-w-[250px] object-contain"
+                />
               </div>
             ))}
           </motion.div>
