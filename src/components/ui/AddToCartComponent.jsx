@@ -28,7 +28,7 @@ export default function AddToCartModal() {
   return (
     <>
       {/* Cart Button */}
-      <button onClick={() => setIsOpen(true)} className="fixed bottom-4 right-4 bg-black text-white p-4 rounded-full shadow-lg">
+      <button onClick={() => setIsOpen(true)} className="fixed bottom-4 right-4 bg-black text-white p-4 z-[99999] rounded-full shadow-lg">
         <ShoppingCart size={24} />
       </button>
 
