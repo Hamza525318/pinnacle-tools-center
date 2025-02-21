@@ -14,9 +14,9 @@ const brands = [
 
 export default function BrandsSection() {
   return (
-    <section className="w-full bg-gray-100 py-12 md:py-20">
+    <section className="w-full bg-gray-100 py-12 md:py-24">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-900 mb-8">
+        <h2 className="text-3xl font-oswald md:text-5xl font-bold text-center text-gray-900 mb-8">
           Brands We Deal In
         </h2>
 
