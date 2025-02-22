@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ProductCard from "./components/ProductCard";
 import ProductsHeader from "./components/ProductHeader";
-import PaginationComponent from "../../components/ui/Pagination";
+import PaginationComponent from "../../../components/ui/Pagination";
 
 const products = [
   {

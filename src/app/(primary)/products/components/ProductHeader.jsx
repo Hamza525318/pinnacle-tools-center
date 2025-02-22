@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
-} from "../../../../components/ui/dropdown-menu";
+} from "../../../../../components/ui/dropdown-menu";
 
 export default function ProductsHeader() {
   const [selectedFilter, setSelectedFilter] = useState("Category");
