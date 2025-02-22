@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Search,
   ShoppingCart,
@@ -17,12 +18,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../../../components/ui/dropdown-menu";
-import Image from "next/image";
 import AddToCartModal from "./AddToCartComponent"; // Importing the Cart Modal Component
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <nav className="w-full bg-white shadow-sm relative">
@@ -66,13 +68,24 @@ const Navbar = () => {
 
         {/* Right Section */}
         <div className="flex items-center space-x-6">
-          <button className="hidden md:flex items-center text-gray-700 hover:text-[#003366]">
-            <User className="h-5 w-5" />
-            <div className="ml-2 text-sm">
-              <p className="text-xs text-gray-500">Account</p>
-              <p className="font-medium">Login</p>
-            </div>
-          </button>
+          {/* Signed In User Dropdown */}
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+
+          {/* If User is Not Signed In, Show Account Button */}
+          <SignedOut>
+            <button
+              className="flex items-center text-gray-700 hover:text-[#003366]"
+              onClick={() => setIsAuthModalOpen(true)}
+            >
+              <User className="h-5 w-5" />
+              <div className="ml-2 text-sm hidden md:block">
+                <p className="text-xs text-gray-500">Account</p>
+                <p className="font-medium">Login</p>
+              </div>
+            </button>
+          </SignedOut>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -88,49 +101,7 @@ const Navbar = () => {
         </div>
       </div>
 
-        <div className="hidden md:block border-t">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-3">
-            <div className="flex items-center space-x-8">
-              <a href="/" className="text-[#003366] font-medium">
-                Home
-              </a>
-              <DropdownMenu className="bg-white">
-                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
-                  Categories
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className=" bg-white z-[9999]">
-                  <DropdownMenuItem>Category 1</DropdownMenuItem>
-                  <DropdownMenuItem>Category 2</DropdownMenuItem>
-                  <DropdownMenuItem>Category 3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
-                  Products
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white z-[9999]">
-                  <DropdownMenuItem>Product 1</DropdownMenuItem>
-                  <DropdownMenuItem>Product 2</DropdownMenuItem>
-                  <DropdownMenuItem>Product 3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <a href="/offers" className="text-[#FFD700] font-medium">
-                Offers
-              </a>
-            </div>
-            <button className="flex items-center text-gray-600 hover:text-[#003366]">
-              <MapPin className="h-5 w-5" />
-              <span className="ml-2">Bangalore</span>
-              <ChevronDown className="ml-1 h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Sidebar Menu */}
+      {/* Mobile Sidebar */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-[#fd714c] to-[#ffc107] shadow-lg text-white p-6 z-50 transform ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -171,26 +142,90 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center justify-between text-white">
-              Products
-              <ChevronDown className="ml-2 h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white text-black w-48 rounded-lg shadow-md">
-              <DropdownMenuItem>Product 1</DropdownMenuItem>
-              <DropdownMenuItem>Product 2</DropdownMenuItem>
-              <DropdownMenuItem>Product 3</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <a href="/offers" className="text-[#FFD700] font-medium">
-            Offers
+          <a href="/contact" className="text-[#FFD700] font-medium">
+            Contact-Us
           </a>
         </nav>
       </div>
 
-      {/* AddToCartModal Integrated */}
-      <AddToCartModal />
+      {/* Second Row - Desktop Menu */}
+      <div className="hidden md:block border-t">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between py-3">
+            <div className="flex items-center space-x-8">
+              <a href="/" className="text-[#003366] font-medium">
+                Home
+              </a>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
+                  Categories
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white z-[9999]">
+                  <DropdownMenuItem>Category 1</DropdownMenuItem>
+                  <DropdownMenuItem>Category 2</DropdownMenuItem>
+                  <DropdownMenuItem>Category 3</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <a href="/contact" className="text-gray-600 hover:text-[#003366]">
+                Contact-us
+              </a>
+              <a href="/offers" className="text-[#FFD700] font-medium">
+                Offers
+              </a>
+            </div>
+            <button className="flex items-center text-gray-600 hover:text-[#003366]">
+              <MapPin className="h-5 w-5" />
+              <span className="ml-2">Bangalore</span>
+              <ChevronDown className="ml-1 h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Authentication Modal */}
+      {isAuthModalOpen && (
+     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">Sign In or Sign Up</h2>
+      <p className="text-gray-600 mb-6">Access your account to continue.</p>
+      
+      {/* Sign In Button */}
+      <button
+        className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition-all mb-3"
+        onClick={() => {
+          setIsAuthModalOpen(false);
+          router.push("/sign-in");
+        }}
+      >
+        Sign In
+      </button>
+      
+      {/* Sign Up Button */}
+      <button
+        className="w-full bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition-all mb-3"
+        onClick={() => {
+          setIsAuthModalOpen(false);
+          router.push("/sign-up");
+        }}
+      >
+        Sign Up
+      </button>
+
+      {/* Cancel Button */}
+      <button
+        className="w-full bg-gray-300 text-gray-800 py-2 rounded-md font-semibold hover:bg-gray-400 transition-all"
+        onClick={() => setIsAuthModalOpen(false)}
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+)}
+
+
+    {/* AddToCartModal Integrated */}
+    <AddToCartModal />
     </nav>
   );
 };

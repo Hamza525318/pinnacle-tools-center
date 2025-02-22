@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, User, Send } from "lucide-react";
-import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
-import { Textarea } from "../../../components/ui/textarea";
+import { Button } from "../../../../components/ui/button";
+import { Input } from "../../../../components/ui/input";
+import { Textarea } from "../../../../components/ui/textarea";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -24,28 +24,28 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="w-full min-h-screen bg-[#001F3F] text-white flex flex-col items-center py-16">
+    <section className="w-full min-h-screen bg-gray-200 text-black flex flex-col items-center py-16">
       {/* Heading */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-5xl font-bold">Get in touch!</h2>
-        <p className="text-gray-300 mt-2">
+        <h2 className="text-3xl font-oswald text-p-blue md:text-5xl font-bold">Get in touch!</h2>
+        <p className="text-black font-oswald mt-2">
           Fill up the form and our team will get back to you within 24 hours.
         </p>
       </div>
 
       {/* Contact Info Boxes */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mb-12">
-        <div className="flex flex-col items-center bg-[#432382] p-6 rounded-lg">
-          <Phone className="h-8 w-8 text-white mb-2" />
-          <p className="text-lg font-medium">+02 1234 567</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl font-roboto mb-12">
+        <div className="flex flex-col items-center bg-p-blue p-6 rounded-lg">
+          <Phone className="h-8 w-8 text-p-yellow mb-2" />
+          <p className="text-lg font-medium text-white">+02 1234 567</p>
         </div>
-        <div className="flex flex-col items-center bg-[#432382] p-6 rounded-lg">
-          <Mail className="h-8 w-8 text-white mb-2" />
-          <p className="text-lg font-medium">hello@yoursite.com</p>
+        <div className="flex flex-col items-center bg-p-blue p-6 rounded-lg">
+          <Mail className="h-8 w-8 text-p-yellow mb-2" />
+          <p className="text-lg font-medium text-white">pinnacle-tools@support.com</p>
         </div>
-        <div className="flex flex-col items-center bg-[#432382] p-6 rounded-lg">
-          <MapPin className="h-8 w-8 text-white mb-2" />
-          <p className="text-lg font-medium">102 Street, Hamilton</p>
+        <div className="flex flex-col items-center bg-p-blue p-6 rounded-lg">
+          <MapPin className="h-8 w-8 text-p-yellow mb-2" />
+          <p className="text-lg text-white font-medium">Sp road,Bangalore</p>
         </div>
       </div>
 
