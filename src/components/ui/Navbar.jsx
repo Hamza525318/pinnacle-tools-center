@@ -19,6 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "../../../components/ui/dropdown-menu";
 import AddToCartModal from "./AddToCartComponent"; // Importing the Cart Modal Component
+import Link from "next/link";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -142,9 +143,9 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <a href="/contact" className="text-[#FFD700] font-medium">
-            Contact-Us
-          </a>
+          <Link href="/products" className="text-white font-medium">
+            Products
+          </Link>
         </nav>
       </div>
 
@@ -170,9 +171,9 @@ const Navbar = () => {
               <a href="/contact" className="text-gray-600 hover:text-[#003366]">
                 Contact-us
               </a>
-              <a href="/offers" className="text-[#FFD700] font-medium">
-                Offers
-              </a>
+              <Link href="/products" className="text-gray-600 font-medium">
+                Products
+              </Link>
             </div>
             <button className="flex items-center text-gray-600 hover:text-[#003366]">
               <MapPin className="h-5 w-5" />

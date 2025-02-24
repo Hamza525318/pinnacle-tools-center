@@ -2,15 +2,23 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/router";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 export default function ProductCard({ product }) {
+  // const router = useRouter();
+
+  // const handleProductClick = () => {
+  //   router.push(`/product/${1}`);
+  // };
   return (
+    <Link href={`/product/${1}`}>
     <div className="border border-gray-200 p-2 rounded-lg shadow-sm hover:shadow-md transition flex flex-col h-full">
       <div className="relative">
         <img
@@ -23,7 +31,6 @@ export default function ProductCard({ product }) {
       {/* Content Wrapper - Ensuring Equal Height */}
       <div className="flex flex-col flex-grow mt-4 min-h-[120px]">
         <h3 className="text-md font-semibold text-gray-800">{product.name}</h3>
-
         {/* Pricing */}
         <div className="flex flex-wrap items-center gap-2 mt-1">
           <span className="text-lg font-bold text-gray-900">
@@ -55,5 +62,6 @@ export default function ProductCard({ product }) {
         Add to Cart
       </Button>
     </div>
+    </Link>
   );
 }
