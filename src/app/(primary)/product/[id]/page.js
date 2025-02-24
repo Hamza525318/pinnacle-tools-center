@@ -41,7 +41,7 @@ const ProductPage = () => {
       />
 
           {/* Quantity Selector */}
-          <div className="px-4">
+    <div className="px-4">
           <QuantitySelector onQuantityChange={setQuantity} />
 
         {/* Add to Cart Button */}
@@ -49,10 +49,19 @@ const ProductPage = () => {
         price={`₹${(product.price * quantity).toLocaleString("en-IN")}`}
         onClick={() => alert(`Added ${quantity} to cart`)}
         />
-          </div>
-          
+
+      <div className="mt-4">
+        <p className="text-gray-600 font-medium mb-2">Guaranteed Safe Checkout</p>
+        <div className="flex items-center gap-3">
+          <img src="../assets/icons/visa.png" alt="Visa" className="h-8" />
+          <img src="../assets/icons/master-card.png" alt="Mastercard" className="h-8" />
+          <img src="../assets/icons/upi.png" alt="UPI" className="h-8" />
+          <img src="../assets/icons/mobile-banking.png" alt="UPI" className="h-8" />
         </div>
       </div>
+    </div>
+    </div>
+    </div>
     </div>
   );
 };
