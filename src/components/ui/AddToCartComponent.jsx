@@ -2,37 +2,32 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, X } from "lucide-react";
+import { ShoppingCart, X, Trash, Plus, Minus } from "lucide-react"; // ✅ Import icons
+import { useCartStore } from "@/app/store/cartStore";
 
 export default function AddToCartModal() {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Sample Cart Items (Replace this with actual cart state from Redux or Context)
-  const cartItems = [
-    {
-      id: 1,
-      name: "Regular Fit T-shirt",
-      price: 399,
-      quantity: 1,
-      color: "White",
-      size: "M",
-      image: "https://via.placeholder.com/80", // Replace with actual product image
-    },
-  ];
+  const { cart, removeFromCart, updateQuantity } = useCartStore();
 
   // Calculate Order Total
-  const orderValue = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  const deliveryCharge = cartItems.length > 0 ? 149 : 0;
+  const orderValue = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  const deliveryCharge = cart.length > 0 ? 149 : 0;
   const totalAmount = orderValue + deliveryCharge;
 
   return (
     <>
-      {/* Cart Button */}
-      <button onClick={() => setIsOpen(true)} className="fixed bottom-4 right-4 bg-black text-white p-4 z-[99999] rounded-full shadow-lg">
+      {/* ✅ Floating Cart Button */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-4 right-4 bg-gray-800 text-white p-4 z-[99999] rounded-full shadow-lg hover:bg-gray-900 transition"
+      >
         <ShoppingCart size={24} />
       </button>
 
-      {/* Modal */}
+      {/* ✅ Modal */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, x: 100 }}
@@ -41,55 +36,100 @@ export default function AddToCartModal() {
           className="fixed top-0 right-0 w-96 h-full bg-white shadow-lg p-6 flex flex-col z-50"
         >
           {/* Close Button */}
-          <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-gray-600 hover:text-black">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 text-gray-600 hover:text-black"
+          >
             <X size={24} />
           </button>
 
           <h2 className="text-xl font-bold mb-4">Shopping Cart</h2>
 
-          {/* If Cart is Empty */}
-          {cartItems.length === 0 ? (
+          {/* ✅ If Cart is Empty */}
+          {cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full">
               <ShoppingCart size={40} className="text-gray-400" />
               <p className="text-gray-500 mt-2">Your cart is empty</p>
             </div>
           ) : (
             <>
-              {/* Cart Items */}
+              {/* ✅ Cart Items */}
               <div className="flex flex-col space-y-4 overflow-auto max-h-[60vh]">
-                {cartItems.map((item) => (
-                  <div key={item.id} className="flex items-center space-x-4 border-b pb-4">
-                    <img src={item.image} alt={item.name} className="w-16 h-16 rounded-md" />
+                {cart.map((item, ind) => (
+                  <div
+                    key={ind}
+                    className="flex items-center space-x-4 border-b pb-4"
+                  >
+                    {/* Product Image */}
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-16 h-16 rounded-md"
+                    />
+
+                    {/* Product Details */}
                     <div className="flex-1">
                       <h3 className="text-lg font-medium">{item.name}</h3>
                       <p className="text-gray-500 text-sm">
-                        Quantity: {item.quantity} | Color: {item.color} | Size: {item.size}
+                        ₹{item.price.toLocaleString("en-IN")}
                       </p>
-                      <p className="font-semibold">Rs. {item.price}</p>
+                      <p className="text-gray-500 text-sm">
+                        Quantity: {item.quantity}
+                      </p>
+
+                      {/* ✅ Quantity Buttons */}
+                      <div className="flex items-center space-x-3 mt-2">
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
+                          className="p-1 rounded-md border text-gray-600 hover:bg-gray-200 transition"
+                          disabled={item.quantity <= 1}
+                        >
+                          <Minus size={16} />
+                        </button>
+                        <span className="font-medium">{item.quantity}</span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
+                          className="p-1 rounded-md border text-gray-600 hover:bg-gray-200 transition"
+                        >
+                          <Plus size={16} />
+                        </button>
+                      </div>
                     </div>
+
+                    {/* ✅ Remove Item Button */}
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="text-red-500 hover:text-red-700 transition"
+                    >
+                      <Trash size={18} />
+                    </button>
                   </div>
                 ))}
               </div>
 
-              {/* Order Summary */}
-              <div className="mt-6">
-                <div className="flex justify-between text-gray-700">
+              {/* ✅ Order Summary */}
+              <div className="mt-6 border-t pt-4">
+                <div className="flex justify-between text-gray-700 text-sm">
                   <span>Order Value</span>
-                  <span>Rs. {orderValue.toFixed(2)}</span>
+                  <span>₹{orderValue.toLocaleString("en-IN")}</span>
                 </div>
-                <div className="flex justify-between text-gray-700 mt-2">
-                  <span>Delivery</span>
-                  <span>Rs. {deliveryCharge.toFixed(2)}</span>
+                <div className="flex justify-between text-gray-700 text-sm mt-2">
+                  <span>Delivery Charge</span>
+                  <span>₹{deliveryCharge}</span>
                 </div>
                 <div className="border-t my-3"></div>
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span>Rs. {totalAmount.toFixed(2)}</span>
+                  <span>₹{totalAmount.toLocaleString("en-IN")}</span>
                 </div>
               </div>
 
-              {/* Checkout Button */}
-              <button className="w-full bg-black text-white py-3 mt-4 rounded-md font-semibold hover:bg-gray-900 transition-all">
+              {/* ✅ Checkout Button */}
+              <button className="w-full bg-gray-800 text-white py-3 mt-4 rounded-md font-semibold hover:bg-gray-900 transition-all">
                 Checkout
               </button>
             </>

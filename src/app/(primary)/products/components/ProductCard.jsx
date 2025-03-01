@@ -10,8 +10,11 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { useCartStore } from "../../../store/cartStore";
 
 export default function ProductCard({ product }) {
+  const { addToCart } = useCartStore(); // ✅ Correct function name
+
   return (
     <Link href={`/product/${product.id}`} className="block">
       <div className="border border-gray-200 p-3 rounded-lg shadow-sm hover:shadow-md transition flex flex-col h-full">
@@ -61,8 +64,8 @@ export default function ProductCard({ product }) {
           <button
             className="p-2 rounded-full shadow-md hover:bg-gray-100 transition"
             onClick={(e) => {
-              e.preventDefault(); // Prevents link navigation when clicking the cart icon
-              alert(`Added ${product.name} to cart!`);
+              e.preventDefault(); // ✅ Prevents the link from triggering when clicking the cart icon
+              addToCart(product); // ✅ Correct function call
             }}
           >
             <ShoppingCart className="h-5 w-5 text-gray-700" />
