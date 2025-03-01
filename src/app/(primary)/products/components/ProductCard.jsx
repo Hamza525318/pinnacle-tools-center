@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react"; // ✅ Import Cart Icon
-import { useRouter } from "next/router";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -11,9 +10,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useCartStore } from "../../../store/cartStore";
+import { toast } from "sonner";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useCartStore(); // ✅ Correct function name
+  const { cart, addToCart } = useCartStore(); // ✅ Get cart & addToCart function
+
+  // ✅ Check if item already exists in cart
+  const isItemInCart = cart.some((item) => item.id === product.id);
 
   return (
     <Link href={`/product/${product.id}`} className="block">
@@ -65,7 +68,16 @@ export default function ProductCard({ product }) {
             className="p-2 rounded-full shadow-md hover:bg-gray-100 transition"
             onClick={(e) => {
               e.preventDefault(); // ✅ Prevents the link from triggering when clicking the cart icon
-              addToCart(product); // ✅ Correct function call
+
+              if (!isItemInCart) {
+                addToCart(product); // ✅ Add only if it's not in the cart
+                toast.success("Item has been added to cart 🛒", {
+                  action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo clicked"),
+                  },
+                });
+              }
             }}
           >
             <ShoppingCart className="h-5 w-5 text-gray-700" />

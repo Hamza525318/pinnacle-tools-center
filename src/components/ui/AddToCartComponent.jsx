@@ -2,14 +2,18 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, X, Trash, Plus, Minus } from "lucide-react"; // ✅ Import icons
+import { ShoppingCart, X, Trash, Plus, Minus } from "lucide-react";
 import { useCartStore } from "@/app/store/cartStore";
+import Link from "next/link";
 
 export default function AddToCartModal() {
   const [isOpen, setIsOpen] = useState(false);
   const { cart, removeFromCart, updateQuantity } = useCartStore();
 
-  // Calculate Order Total
+  // ✅ Calculate Cart Count
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  // ✅ Calculate Order Total
   const orderValue = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -19,14 +23,20 @@ export default function AddToCartModal() {
 
   return (
     <>
-      {/* ✅ Floating Cart Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 bg-gray-800 text-white p-4 z-[99999] rounded-full shadow-lg hover:bg-gray-900 transition"
-      >
-        <ShoppingCart size={24} />
-      </button>
-
+      {/* ✅ Floating Cart Button (Only Visible if Cart has Items) */}
+      
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-4 right-4 bg-gray-800 text-white p-4 z-[99999] rounded-full shadow-lg hover:bg-gray-900 transition"
+        >
+          <ShoppingCart size={24} />
+          {/* ✅ Cart Count Badge */}
+          {cartCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+              {cartCount}
+            </span>
+          )}
+        </button>
       {/* ✅ Modal */}
       {isOpen && (
         <motion.div
@@ -129,9 +139,11 @@ export default function AddToCartModal() {
               </div>
 
               {/* ✅ Checkout Button */}
-              <button className="w-full bg-gray-800 text-white py-3 mt-4 rounded-md font-semibold hover:bg-gray-900 transition-all">
-                Checkout
-              </button>
+              <Link href="/checkout">
+                <button className="w-full bg-gray-800 text-white py-3 mt-4 rounded-md font-semibold hover:bg-gray-900 transition-all">
+                  Checkout
+                </button>
+              </Link>
             </>
           )}
         </motion.div>

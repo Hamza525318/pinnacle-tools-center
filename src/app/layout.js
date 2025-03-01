@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import Navbar from "../components/ui/Navbar";
 import Footer from "../components/ui/FooterSection";
+import { Toaster } from "../../components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${roboto.variable} antialiased`}
       >
         {children}
+      
       </body>
     </html>
     </ClerkProvider>
