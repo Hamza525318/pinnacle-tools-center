@@ -1,8 +1,17 @@
 "use client";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Search, ShoppingCart, ChevronDown, MapPin, User, Menu, X,LogOut } from "lucide-react";
+import {
+  Search,
+  ShoppingCart,
+  ChevronDown,
+  MapPin,
+  User,
+  Menu,
+  X,
+  LogOut,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,20 +22,20 @@ import AddToCartModal from "./AddToCartComponent"; // Importing the Cart Modal C
 import Link from "next/link";
 import AuthModal from "./AuthComponent";
 import useAuthStore from "../../app/store/authStore";
-import {Button} from "../../../components/ui/button"
-
+import { Button } from "../../../components/ui/button";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const { user, isAuthenticated, logout,fetchUser } = useAuthStore();
+  const { user, isAuthenticated, logout, fetchUser } = useAuthStore();
   const router = useRouter();
 
-  console.log("USER",user);
-  useEffect(()=>{
+  console.log("USER", user);  useEffect(() => {
+    console.log("USE EFFECT FIRED");
     fetchUser();
-  },[])
+    setIsMobileMenuOpen(false);
+  }, []);
 
   return (
     <nav className="w-full bg-white shadow-sm relative">
@@ -70,37 +79,48 @@ const Navbar = () => {
 
         {/* Right Section */}
         <div className="flex items-center space-x-4">
-        {isAuthenticated ? (
-          // User Dropdown Menu
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="flex items-center space-x-2 hover:bg-gray-100 px-3 py-2 rounded-md">
+          {isAuthenticated ? (
+            // User Dropdown Menu
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="flex items-center space-x-4">
+                  <button className="flex items-center hover:bg-gray-100 px-3 py-2 rounded-md">
+                    <User className="h-6 w-6 text-gray-700" />
+                    {/* <span className="font-medium">{user?.name}</span> */}
+                  </button>
+                  <Menu
+                    className="h-5 w-5 text-gray-500"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  />
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-white z-[9999999]">
+                <DropdownMenuItem className="flex items-center space-x-2">
+                  <User className="h-4 w-4 text-gray-500" />
+                  <span>{user?.email}</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center space-x-2 text-red-500 hover:bg-red-100"
+                  onClick={logout}
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            // Sign In Button
+            <div className="flex items-center space-x-4">
+              <button onClick={() => setIsAuthModalOpen(true)}>
                 <User className="h-6 w-6 text-gray-700" />
-                <span className="font-medium">{user?.name}</span>
               </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white z-[9999999]">
-              <DropdownMenuItem className="flex items-center space-x-2">
-                <User className="h-4 w-4 text-gray-500" />
-                <span>{user?.email}</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="flex items-center space-x-2 text-red-500 hover:bg-red-100"
-                onClick={logout}
-              >
-                <LogOut className="h-4 w-4" />
-                <span>Logout</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
-          // Sign In Button
-          <button onClick={() => setIsAuthModalOpen(true)} className="flex items-center space-x-2">
-            <User className="h-6 w-6 text-gray-700" />
-            <span>Sign In</span>
-          </button>
-        )}
-      </div>
+              <Menu
+                className="h-5 w-5 text-gray-500"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Mobile Sidebar */}
@@ -128,9 +148,9 @@ const Navbar = () => {
         </div>
 
         <nav className="mt-6 flex flex-col space-y-4">
-          <a href="/" className="text-white font-medium">
+          <Link onClick={()=> setIsMobileMenuOpen(false)} href="/" className="text-white font-medium">
             Home
-          </a>
+          </Link>
 
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center justify-between text-white">
@@ -144,7 +164,7 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link href="/products" className="text-white font-medium">
+          <Link onClick={()=> setIsMobileMenuOpen(false)} href="/products" className="text-white font-medium">
             Products
           </Link>
         </nav>
@@ -155,9 +175,9 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center space-x-8">
-              <a href="/" className="text-[#003366] font-medium">
+              <Link href="/" className="text-[#003366] font-medium">
                 Home
-              </a>
+              </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
                   Categories
@@ -169,9 +189,9 @@ const Navbar = () => {
                   <DropdownMenuItem>Category 3</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <a href="/contact" className="text-gray-600 hover:text-[#003366]">
+              <Link href="/contact" className="text-gray-600 hover:text-[#003366]">
                 Contact-us
-              </a>
+              </Link>
               <Link href="/products" className="text-gray-600 font-medium">
                 Products
               </Link>
@@ -187,7 +207,10 @@ const Navbar = () => {
 
       {/* AddToCartModal Integrated */}
       <AddToCartModal />
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </nav>
   );
 };
