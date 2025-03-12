@@ -1,17 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import {
-  Search,
-  ShoppingCart,
-  ChevronDown,
-  MapPin,
-  User,
-  Menu,
-  X,
-} from "lucide-react";
+import { Search, ShoppingCart, ChevronDown, MapPin, User, Menu, X,LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,12 +11,22 @@ import {
 } from "../../../components/ui/dropdown-menu";
 import AddToCartModal from "./AddToCartComponent"; // Importing the Cart Modal Component
 import Link from "next/link";
+import AuthModal from "./AuthComponent";
+import useAuthStore from "../../app/store/authStore";
+import {Button} from "../../../components/ui/button"
+
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const { user, isAuthenticated, logout,fetchUser } = useAuthStore();
   const router = useRouter();
+
+  console.log("USER",user);
+  useEffect(()=>{
+    fetchUser();
+  },[])
 
   return (
     <nav className="w-full bg-white shadow-sm relative">
@@ -68,38 +69,38 @@ const Navbar = () => {
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center space-x-6">
-          {/* Signed In User Dropdown */}
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-
-          {/* If User is Not Signed In, Show Account Button */}
-          <SignedOut>
-            <button
-              className="flex items-center text-gray-700 hover:text-[#003366]"
-              onClick={() => setIsAuthModalOpen(true)}
-            >
-              <User className="h-5 w-5" />
-              <div className="ml-2 text-sm hidden md:block">
-                <p className="text-xs text-gray-500">Account</p>
-                <p className="font-medium">Login</p>
-              </div>
-            </button>
-          </SignedOut>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-gray-700" />
-            ) : (
-              <Menu className="h-6 w-6 text-gray-700" />
-            )}
+        <div className="flex items-center space-x-4">
+        {isAuthenticated ? (
+          // User Dropdown Menu
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="flex items-center space-x-2 hover:bg-gray-100 px-3 py-2 rounded-md">
+                <User className="h-6 w-6 text-gray-700" />
+                <span className="font-medium">{user?.name}</span>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-white z-[9999999]">
+              <DropdownMenuItem className="flex items-center space-x-2">
+                <User className="h-4 w-4 text-gray-500" />
+                <span>{user?.email}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex items-center space-x-2 text-red-500 hover:bg-red-100"
+                onClick={logout}
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Logout</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          // Sign In Button
+          <button onClick={() => setIsAuthModalOpen(true)} className="flex items-center space-x-2">
+            <User className="h-6 w-6 text-gray-700" />
+            <span>Sign In</span>
           </button>
-        </div>
+        )}
+      </div>
       </div>
 
       {/* Mobile Sidebar */}
@@ -184,49 +185,9 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Authentication Modal */}
-      {isAuthModalOpen && (
-     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Sign In or Sign Up</h2>
-      <p className="text-gray-600 mb-6">Access your account to continue.</p>
-      
-      {/* Sign In Button */}
-      <button
-        className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition-all mb-3"
-        onClick={() => {
-          setIsAuthModalOpen(false);
-          router.push("/sign-in");
-        }}
-      >
-        Sign In
-      </button>
-      
-      {/* Sign Up Button */}
-      <button
-        className="w-full bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition-all mb-3"
-        onClick={() => {
-          setIsAuthModalOpen(false);
-          router.push("/sign-up");
-        }}
-      >
-        Sign Up
-      </button>
-
-      {/* Cancel Button */}
-      <button
-        className="w-full bg-gray-300 text-gray-800 py-2 rounded-md font-semibold hover:bg-gray-400 transition-all"
-        onClick={() => setIsAuthModalOpen(false)}
-      >
-        Cancel
-      </button>
-    </div>
-  </div>
-)}
-
-
-    {/* AddToCartModal Integrated */}
-    <AddToCartModal />
+      {/* AddToCartModal Integrated */}
+      <AddToCartModal />
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </nav>
   );
 };

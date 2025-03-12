@@ -1,6 +1,5 @@
 import { Geist, Geist_Mono, Oswald, Roboto } from "next/font/google";
 import {
-  ClerkProvider,
   SignInButton,
   SignedIn,
   SignedOut,
@@ -40,7 +39,6 @@ const roboto = Roboto({
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
       <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${roboto.variable} antialiased`}
@@ -49,7 +47,6 @@ export default function RootLayout({ children }) {
       
       </body>
     </html>
-    </ClerkProvider>
    
   );
 }
