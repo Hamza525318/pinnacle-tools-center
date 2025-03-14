@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "../../../components/ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -43,7 +44,8 @@ export default function HeroSection() {
           <p className=" text-lg font-roboto text-off-white my-2">
             Trusted by thousands of professionals worldwide.
           </p>
-
+ 
+          <Link href={'/products'}>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -51,6 +53,7 @@ export default function HeroSection() {
           >
             Shop Now
           </motion.button>
+          </Link>
 
           {/* Trust-Building Subtext */}
         </motion.div>

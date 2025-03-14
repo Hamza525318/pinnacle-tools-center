@@ -23,12 +23,14 @@ import Link from "next/link";
 import AuthModal from "./AuthComponent";
 import useAuthStore from "../../app/store/authStore";
 import { Button } from "../../../components/ui/button";
+import ProductCategoriesDropdown from "./CategoryDropdown";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const { user, isAuthenticated, logout, fetchUser } = useAuthStore();
+  const { user, isAuthenticated,logout, fetchUser } = useAuthStore();
   const router = useRouter();
 
   console.log("USER", user);  useEffect(() => {
@@ -36,6 +38,15 @@ const Navbar = () => {
     fetchUser();
     setIsMobileMenuOpen(false);
   }, []);
+
+  const handleLogOut = async()=>{
+    try {
+      await logout();
+      toast.success('Logged Out Successfully');
+    } catch (error) {
+      toast.error("Error Logging out. Please try again later!!")
+    }
+  }
 
   return (
     <nav className="w-full bg-white shadow-sm relative">
@@ -49,20 +60,7 @@ const Navbar = () => {
         />
 
         {/* Desktop Search Bar */}
-        <div className="hidden md:flex items-center flex-1 max-w-xl mx-8">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center px-4 py-2 bg-gray-50 border-r border-gray-200 rounded-l-lg">
-              <span className="text-gray-600">Products</span>
-              <ChevronDown className="ml-2 h-4 w-4 text-gray-500" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48 bg-white z-[9999]">
-              <DropdownMenuItem>Router Bits</DropdownMenuItem>
-              <DropdownMenuItem>CNC Bits</DropdownMenuItem>
-              <DropdownMenuItem>V Groove Blades</DropdownMenuItem>
-              <DropdownMenuItem>Power tools</DropdownMenuItem>
-              <DropdownMenuItem>Abrasives</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="hidden md:flex items-center flex-1 max-w-lg mx-8">
           <div className="flex flex-1 items-center border border-gray-200 rounded-r-lg">
             <input
               type="text"
@@ -81,18 +79,14 @@ const Navbar = () => {
         <div className="flex items-center space-x-4">
           {isAuthenticated ? (
             // User Dropdown Menu
+            <div className="flex items-center space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <div className="flex items-center space-x-4">
+               
                   <button className="flex items-center hover:bg-gray-100 px-3 py-2 rounded-md">
                     <User className="h-6 w-6 text-gray-700" />
                     {/* <span className="font-medium">{user?.name}</span> */}
                   </button>
-                  <Menu
-                    className="h-5 w-5 text-gray-500"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  />
-                </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-white z-[9999999]">
                 <DropdownMenuItem className="flex items-center space-x-2">
@@ -101,13 +95,18 @@ const Navbar = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="flex items-center space-x-2 text-red-500 hover:bg-red-100"
-                  onClick={logout}
+                  onClick={handleLogOut}
                 >
                   <LogOut className="h-4 w-4" />
                   <span>Logout</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            <Menu
+              className="h-5 w-5 text-gray-500 block md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </div>
           ) : (
             // Sign In Button
             <div className="flex items-center space-x-4">
@@ -115,9 +114,9 @@ const Navbar = () => {
                 <User className="h-6 w-6 text-gray-700" />
               </button>
               <Menu
-                className="h-5 w-5 text-gray-500"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              />
+              className="h-5 w-5 text-gray-500 block md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
             </div>
           )}
         </div>
@@ -151,19 +150,7 @@ const Navbar = () => {
           <Link onClick={()=> setIsMobileMenuOpen(false)} href="/" className="text-white font-medium">
             Home
           </Link>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center justify-between text-white">
-              Categories
-              <ChevronDown className="ml-2 h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white text-black w-48 rounded-lg shadow-md">
-              <DropdownMenuItem>Category 1</DropdownMenuItem>
-              <DropdownMenuItem>Category 2</DropdownMenuItem>
-              <DropdownMenuItem>Category 3</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
+          <ProductCategoriesDropdown/> 
           <Link onClick={()=> setIsMobileMenuOpen(false)} href="/products" className="text-white font-medium">
             Products
           </Link>
@@ -178,17 +165,8 @@ const Navbar = () => {
               <Link href="/" className="text-[#003366] font-medium">
                 Home
               </Link>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-[#003366]">
-                  Categories
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white z-[9999]">
-                  <DropdownMenuItem>Category 1</DropdownMenuItem>
-                  <DropdownMenuItem>Category 2</DropdownMenuItem>
-                  <DropdownMenuItem>Category 3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+             
+                <ProductCategoriesDropdown/>
               <Link href="/contact" className="text-gray-600 hover:text-[#003366]">
                 Contact-us
               </Link>

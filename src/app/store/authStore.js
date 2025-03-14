@@ -1,11 +1,11 @@
 "use client";
 
 import { create } from "zustand";
-import api from "../../lib/api" 
-import Cookies from "js-cookie"
+import api from "../../lib/api";
+import Cookies from "js-cookie";
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000"; // Default to localhost in development
 
-console.log("BASE URL",BASE_URL)
+console.log("BASE URL", BASE_URL);
 const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
@@ -17,11 +17,12 @@ const useAuthStore = create((set) => ({
     set({ loading: true, error: null });
 
     try {
-      console.log(BASE_URL)
       const { data } = await api.post(`${BASE_URL}/api/users/login`, { email, password });
       set({ user: data, isAuthenticated: true, loading: false });
     } catch (error) {
-      set({ error: error.response?.data?.message || "Login failed", loading: false });
+      console.log(error);
+      set({ loading: false });
+      throw new Error(error.response?.data?.message || "Login failed");
     }
   },
 
@@ -33,7 +34,9 @@ const useAuthStore = create((set) => ({
       const { data } = await api.post(`${BASE_URL}/api/users/register`, { name, email, password });
       set({ user: data, isAuthenticated: true, loading: false });
     } catch (error) {
-      set({ error: error.response?.data?.message || "Registration failed", loading: false });
+      set({ loading: false });
+      console.log(error);
+      throw new Error(error.response?.data?.message || "Registration failed");
     }
   },
 
@@ -43,22 +46,15 @@ const useAuthStore = create((set) => ({
       await api.post(`${BASE_URL}/api/users/logout`);
       set({ user: null, isAuthenticated: false });
     } catch (error) {
-      console.error("Logout failed", error);
+      throw new Error(error.response?.data?.message || "Registration failed");
     }
   },
 
   fetchUser: async () => {
-    const token = Cookies.get('jwt')
-    // console.log("TOKEN",token)
-    // if (!token) {
-    //   set({ loading: false });
-    //   return;
-    // }
+    const token = Cookies.get('jwt');
 
     try {
-      console.log("FETCH USER PROFILE")
       const { data } = await api.get(`${BASE_URL}/api/users/profile`);
-      console.log("DATA",data);
       set({ user: data, isAuthenticated: true, loading: false });
     } catch (error) {
       console.log("Auth Fetch Error:", error.response?.data?.message || error.message);
