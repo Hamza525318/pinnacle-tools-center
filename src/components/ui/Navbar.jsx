@@ -11,6 +11,7 @@ import {
   Menu,
   X,
   LogOut,
+  ShoppingBag
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -80,28 +81,42 @@ const Navbar = () => {
           {isAuthenticated ? (
             // User Dropdown Menu
             <div className="flex items-center space-x-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-               
-                  <button className="flex items-center hover:bg-gray-100 px-3 py-2 rounded-md">
-                    <User className="h-6 w-6 text-gray-700" />
-                    {/* <span className="font-medium">{user?.name}</span> */}
-                  </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-white z-[9999999]">
-                <DropdownMenuItem className="flex items-center space-x-2">
-                  <User className="h-4 w-4 text-gray-500" />
-                  <span>{user?.email}</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="flex items-center space-x-2 text-red-500 hover:bg-red-100"
-                  onClick={handleLogOut}
-                >
-                  <LogOut className="h-4 w-4" />
-                  <span>Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+    <button className="flex items-center hover:bg-gray-100 px-4 py-3 rounded-lg shadow-sm">
+      <User className="h-6 w-6 text-gray-700" />
+    </button>
+          </DropdownMenuTrigger>
+
+         <DropdownMenuContent
+    align="end"
+    className="bg-white z-[9999999] w-60 rounded-lg shadow-lg border p-3 space-y-2"
+  >
+    {/* User Email Section */}
+    <DropdownMenuItem className="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-100 transition cursor-pointer">
+      <User className="h-5 w-5 text-gray-500" />
+      <span className="text-gray-800 font-medium">{user?.email}</span>
+    </DropdownMenuItem>
+
+    {/* My Orders Link */}
+    <DropdownMenuItem className="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-100 transition cursor-pointer">
+  <ShoppingBag className="h-5 w-5 text-gray-500" />
+  <Link href={'/myorders'} className="w-full">
+    <span className="text-gray-800 font-medium">My Orders</span>
+  </Link>
+</DropdownMenuItem>
+
+    {/* Logout Button */}
+    <DropdownMenuItem
+      className="flex items-center space-x-3 p-3 rounded-md text-red-500 hover:bg-red-100 transition cursor-pointer"
+      onClick={handleLogOut}
+    >
+      <LogOut className="h-5 w-5" />
+      <span className="font-medium">Logout</span>
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
             <Menu
               className="h-5 w-5 text-gray-500 block md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -124,38 +139,40 @@ const Navbar = () => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-[#fd714c] to-[#ffc107] shadow-lg text-white p-6 z-50 transform ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out`}
-      >
-        <button
-          className="absolute top-4 right-4"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          <X className="h-6 w-6 text-white" />
-        </button>
+  className={`fixed top-0 right-0 h-full w-72 bg-gradient-to-b from-orange-500 to-yellow-400 shadow-2xl text-white p-6 z-50 transform ${
+    isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+  } transition-transform duration-300 ease-in-out rounded-l-3xl`}
+>
+  <button
+    className="absolute top-4 right-4 bg-white p-1 rounded-full shadow-md"
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <X className="h-5 w-5 text-gray-700" />
+  </button>
 
-        {/* Search Bar - Moved Down */}
-        <div className="mt-10">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
+  <nav className="mt-16 flex flex-col space-y-6 text-lg font-semibold">
+    <Link
+      onClick={() => setIsMobileMenuOpen(false)}
+      href="/"
+      className="hover:bg-white hover:text-orange-500 py-2 px-4 rounded-lg transition"
+    >
+      Home
+    </Link>
 
-        <nav className="mt-6 flex flex-col space-y-4">
-          <Link onClick={()=> setIsMobileMenuOpen(false)} href="/" className="text-white font-medium">
-            Home
-          </Link>
-          <ProductCategoriesDropdown/> 
-          <Link onClick={()=> setIsMobileMenuOpen(false)} href="/products" className="text-white font-medium">
-            Products
-          </Link>
-        </nav>
-      </div>
+    <div className="hover:bg-white hover:text-orange-500 py-2 px-4 rounded-lg">
+      <ProductCategoriesDropdown />
+    </div>
+
+    <Link
+      onClick={() => setIsMobileMenuOpen(false)}
+      href="/products"
+      className="hover:bg-white hover:text-orange-500 py-2 px-4 rounded-lg transition"
+    >
+      Products
+    </Link>
+  </nav>
+</div>
+
 
       {/* Second Row - Desktop Menu */}
       <div className="hidden md:block border-t">
