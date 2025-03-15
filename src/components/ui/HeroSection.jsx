@@ -1,63 +1,83 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "../../../components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-center p-6 md:p-12 bg-gradient-to-tr from-[#002244] via-[#61356f] via-[#c04271] via-[#fd714c] to-[#ffc107] text-white relative">
-      {/* Title Centered at the Top with Animation & Text Shadow */}
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
+    <section className="w-full h-screen relative flex items-center justify-center bg-black">
+      
+      {/* Full-Screen Background Image */}
+      <Image
+        src="https://res.cloudinary.com/dduzbqxt7/image/upload/v1741996969/pinnacle-tools/staticassets/bg-hero_o3hmxt.webp" // Replace this with the newly generated image path
+        alt="Precision Cutting Tools Background"
+        layout="fill"
+        objectFit="cover"
+        quality={100}
+        className="z-0"
+      />
+      
+      {/* Dark Overlay for Text Visibility */}
+      <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
+
+      {/* Content Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-3xl md:text-5xl font-bold font-oswald text-white text-shadow"
+        transition={{ duration: 1 }}
+        className="z-20 text-center px-6 md:px-12 max-w-3xl"
       >
-        Your Ultimate Destination for Precision Cutting Tools
-      </motion.h1>
-
-      <div className="w-full flex flex-col md:flex-row items-center justify-center mt-20 md:mt-0">
-        {/* Left Side - Image (Positioned Slightly Bottom Left, Optimized Size) */}
-        <div className="w-full md:w-[55%] lg:w-[50%] flex justify-start md:pl-12 md:mt-16">
-          <img
-            src="./assets/hero-section-01.webp" // Replace this later with actual image
-            alt="Hero Section Image"
-            className="rounded-lg shadow-lg object-cover w-full max-w-[500px]"
-          />
-        </div>
-
-        {/* Right Side - Description & Button */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="w-full md:w-1/2 text-center md:text-left mt-6 md:mt-0 px-4"
+        {/* Main Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg"
         >
-          <p className="text-md md:text-xl mb-6 text-off-white font-roboto text-shadow">
-            Explore a curated selection of router bits and CNC cutting tools
-            designed for professionals and DIY enthusiasts alike. Experience the
-            perfect blend of innovation, quality, and affordability.
-          </p>
+          Pinnacle Tools Center
+        </motion.h1>
 
-          <p className=" text-lg font-roboto text-off-white my-2">
-            Trusted by thousands of professionals worldwide.
-          </p>
- 
-          <Link href={'/products'}>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-[#ffc107] text-black px-8 py-3 rounded-md shadow-md hover:bg-[#ffb300] text-p-blue font-semibold text-lg w-[160px] h-[48px] transition-all"
-          >
-            Shop Now
-          </motion.button>
+        {/* Subheading */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-md md:text-xl text-gray-200 mb-8"
+        >
+          Discover premium router bits and CNC tools, crafted for professionals and DIY enthusiasts. Innovation meets quality.
+        </motion.p>
+
+        {/* Trust Statement */}
+        <p className="text-lg text-gray-300 mb-8">
+          Trusted by thousands of professionals worldwide.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <Link href={"/products"}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="bg-[#ffc107] text-black px-8 py-3 rounded-lg shadow-lg hover:bg-[#ffb300] text-lg font-semibold transition-all"
+            >
+              Shop Now
+            </motion.button>
           </Link>
 
-          {/* Trust-Building Subtext */}
-        </motion.div>
-      </div>
+          <Link href={"/contact"}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="bg-transparent border-2 border-[#ffc107] text-[#ffc107] px-8 py-3 rounded-lg hover:bg-[#ffc107] hover:text-black shadow-lg text-lg font-semibold transition-all"
+            >
+              Enquire Now
+            </motion.button>
+          </Link>
+        </div>
+      </motion.div>
     </section>
   );
 }
