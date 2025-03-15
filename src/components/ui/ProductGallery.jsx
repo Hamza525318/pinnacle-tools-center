@@ -1,71 +1,82 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-export default function ProductGallery() {
+const galleryItems = [
+  {
+    title: "Power Tools",
+    description: "Reliable and powerful tools for all projects.",
+    image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742037755/pinnacle-tools/staticassets/power-tools_ycbgc6.jpg",
+    link: "/products/power-tools",
+  },
+  {
+    title: "Cordless tools",
+    description: "Portable and powerful tools offering flexibility",
+    image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038007/pinnacle-tools/staticassets/d00fe31c-76ae-433c-83cd-c7fab3b7cead.png",
+    link: "",
+  },
+  {
+    title: "Hand tools",
+    description: "Reliable and durable hand tools",
+    image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038376/pinnacle-tools/staticassets/hand-tools_jvxbc4.jpg",
+    link: "",
+  },
+  
+  {
+    title: "Wood Working tools",
+    description: "Sharp and durable blades for fine woodwork.",
+    image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038622/pinnacle-tools/staticassets/wood-working-tools_y13xyy.jpg",
+    link: "/products/wood-cutting",
+  },
+  {
+    title: "Pneumatic Tools",
+    description: "Heavy-duty air-powered tools for maximum performance",
+    image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038998/pinnacle-tools/staticassets/pneumatic-tools_ovvl1w.jpg",
+    link: "/products/router",
+  },
+];
+
+export default function GallerySection() {
   return (
-    <section className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-6 md:p-12 bg-white">
-      {/* Left Side - 2x2 Grid */}
-      <div className="w-full md:w-[60%] grid grid-cols-2 gap-6 p-4">
-        {[
-          {
-            name: "V-Groove Blades",
-            description: "Perfect for precise engraving and carving.",
-            image: "./assets/gallery/power_tools_01.webp",
-          },
-          {
-            name: "CNC Bits",
-            description: "Engineered for high-speed, efficient cutting.",
-            image: "./assets/gallery/power_tools_01.webp",
-          },
-          {
-            name: "Power Tools",
-            description: "Reliable and powerful tools for all projects.",
-            image: "./assets/gallery/power_tools_01.webp",
-          },
-          {
-            name: "Wood Cutting Blades",
-            description: "Sharp and durable blades for fine woodwork.",
-            image: "./assets/gallery/power_tools_01.webp",
-          },
-        ].map((product, index) => (
-          <div
+    <section className="p-6 md:p-12 bg-gray-100">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {galleryItems.map((item, index) => (
+          <motion.div
             key={index}
-            className="relative bg-gray-100 rounded-lg shadow-md overflow-hidden flex items-center justify-center h-[200px] group"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+            className="relative overflow-hidden rounded-xl shadow-lg group"
           >
-            {/* Background Image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-opacity duration-300 group-hover:opacity-80"
-              style={{ backgroundImage: `url(${product.image})` }}
-            ></div>
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center px-4">
-              <p className="text-xl font-bold text-white">{product.name}</p>
-              <p className="text-sm text-gray-300 mt-2">
-                {product.description}
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={500}
+              height={300}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex flex-col items-center justify-center p-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+              <h3 className="text-white text-2xl font-bold mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-200 text-center mb-4">
+                {item.description}
               </p>
+              <Link href={item.link}>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-[#ffc107] text-black px-6 py-2 rounded-lg shadow-md hover:bg-[#ffb300] transition-all"
+                >
+                  Explore More
+                </motion.button>
+              </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
-
-      {/* Right Side - Large Image with Background */}
-      <div className="w-full md:w-[40%] flex items-center justify-center p-4">
-        <div
-          className="relative w-full h-[500px] bg-cover bg-center rounded-lg shadow-lg overflow-hidden"
-          style={{
-            backgroundImage: "url('./assets/gallery/router_bits_01.webp')",
-          }}
-        >
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center px-4">
-            <p className="text-3xl font-bold text-white">Router Bits</p>
-            <p className="text-lg text-gray-300 mt-2">
-              High-quality router bits for smooth and precise cuts.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
