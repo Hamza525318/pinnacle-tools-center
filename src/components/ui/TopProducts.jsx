@@ -15,7 +15,7 @@ const products = [
 
 export default function TopProducts() {
   return (
-    <section className="w-full py-12 px-6 md:px-12 bg-white">
+    <section className="w-full py-12 px-6 md:px-12 bg-[#f0f0f5] text-gray-900">
       <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 text-center">
         Top Products
       </h2>

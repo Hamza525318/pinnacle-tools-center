@@ -57,9 +57,9 @@ const cardColors = [
 
 export default function CategoriesSection() {
   return (
-    <section className="w-full bg-white py-12 md:py-24">
+    <section id="categories" className="w-full bg-gradient-to-br from-[#002244] to-[#004080] text-white py-12 md:py-24">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-900 mb-8">
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-8">
           Explore Categories
         </h2>
 

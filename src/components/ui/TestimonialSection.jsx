@@ -80,7 +80,7 @@ export default function TestimonialSection() {
         >
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.id}>
-              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-4 h-[260px] md:h-[300px] overflow-hidden">
+              <div className="bg-[#f6f9fc] text-gray-900  p-6 rounded-lg shadow-md flex flex-col gap-4 h-[260px] md:h-[300px] overflow-hidden">
                 <Quote size={32} className="text-[#FFC107]" />
                 <p className="text-gray-700 text-lg flex-grow">
                   {testimonial.review}

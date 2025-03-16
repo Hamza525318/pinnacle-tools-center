@@ -8,6 +8,7 @@ import CTASection from "../../components/ui/CTASection";
 import OurServices from "../../components/ui/OurServices";
 import TestimonialSection from "../../components/ui/TestimonialSection";
 import BrandsSection from "../../components/ui/BrandsSection";
+import ContactSection from "../../components/ui/ContactSection";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
     <CTASection/>
     <OurServices/>
     <TestimonialSection/>
+    <ContactSection/>
    </>
   );
 }

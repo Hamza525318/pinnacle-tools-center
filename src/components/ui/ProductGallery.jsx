@@ -9,38 +9,38 @@ const galleryItems = [
     title: "Power Tools",
     description: "Reliable and powerful tools for all projects.",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742037755/pinnacle-tools/staticassets/power-tools_ycbgc6.jpg",
-    link: "/products/power-tools",
+    link: "/products",
   },
   {
     title: "Cordless tools",
     description: "Portable and powerful tools offering flexibility",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038007/pinnacle-tools/staticassets/d00fe31c-76ae-433c-83cd-c7fab3b7cead.png",
-    link: "",
+    link: "/products",
   },
   {
     title: "Hand tools",
     description: "Reliable and durable hand tools",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038376/pinnacle-tools/staticassets/hand-tools_jvxbc4.jpg",
-    link: "",
+    link: "/products",
   },
   
   {
     title: "Wood Working tools",
     description: "Sharp and durable blades for fine woodwork.",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038622/pinnacle-tools/staticassets/wood-working-tools_y13xyy.jpg",
-    link: "/products/wood-cutting",
+    link: "/products",
   },
   {
     title: "Pneumatic Tools",
     description: "Heavy-duty air-powered tools for maximum performance",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038998/pinnacle-tools/staticassets/pneumatic-tools_ovvl1w.jpg",
-    link: "/products/router",
+    link: "/products",
   },
 ];
 
 export default function GallerySection() {
   return (
-    <section className="p-6 md:p-12 bg-gray-100">
+    <section className="p-6 md:p-12 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {galleryItems.map((item, index) => (
           <motion.div

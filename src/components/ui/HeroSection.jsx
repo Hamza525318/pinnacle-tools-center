@@ -66,7 +66,7 @@ export default function HeroSection() {
             </motion.button>
           </Link>
 
-          <Link href={"/contact"}>
+          <Link href={"#contact-us"}>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
