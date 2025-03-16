@@ -27,6 +27,18 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { user, isAuthenticated, logout, fetchUser } = useAuthStore();
+  const router = useRouter();
+
+  // Function to handle internal navigation
+  const handleNavigation = (path, sectionId) => {
+    if (router.pathname === "/") {
+      // Already on the homepage, just scroll
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to homepage, then scroll
+      router.push(`/#${sectionId}`);
+    }
+  };
 
   useEffect(() => {
     fetchUser();
@@ -134,33 +146,41 @@ const Navbar = () => {
 
       {/* Mobile Full Width Menu */}
       <div className="md:hidden w-full py-3 shadow-sm">
-        <div className="flex justify-around">
-          <Link href="/products" className="hover:text-[#003366] text-gray-800 transition">
-            Products
-          </Link>
-          <Link href="#categories" className="hover:text-[#003366] text-gray-800 transition">
-            Categories
-          </Link>
-          <Link href="#contact-us" className="hover:text-[#003366] text-gray-800 transition">
-            Contact Us
-          </Link>
-        </div>
+      <div className="flex justify-around">
+        <Link href="/products" className="hover:text-[#003366] text-gray-800 transition">
+          Products
+        </Link>
+
+        <button
+          onClick={() => handleNavigation("/", "categories")}
+          className="hover:text-[#003366] text-gray-800 transition"
+        >
+          Categories
+        </button>
+
+        <button
+          onClick={() => handleNavigation("/", "contact-us")}
+          className="hover:text-[#003366] text-gray-800 transition"
+        >
+          Contact Us
+        </button>
       </div>
+    </div>
 
       {/* Desktop Navigation */}
       <div className="hidden md:block border-t">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-3">
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="text-[#003366] font-medium">
+            <div className="flex items-center space-x-8 cursor-pointer">
+              <p onClick={() => handleNavigation("/", "")} className="text-[#003366] font-medium">
                 Home
-              </Link>
-              <Link href="#categories" className="text-gray-600 font-medium">
+              </p>
+              <p onClick={() => handleNavigation("/", "categories")} className="text-gray-600 font-medium">
                 Categories
-              </Link>
-              <Link href="#contact-us" className="text-gray-600 font-medium">
+              </p>
+              <p onClick={() => handleNavigation("/", "contact-us")} className="text-gray-600 font-medium">
                 Contact-us
-              </Link>
+              </p>
               <Link href="/products" className="text-gray-600 font-medium">
                 Products
               </Link>
