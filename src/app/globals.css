@@ -61,6 +61,30 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
+/* Custom Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  height: 8px; /* Set the height for horizontal scrollbars */
+  width: 8px;  /* Set the width for vertical scrollbars (if needed) */
+}
+
+/* Track */
+.no-scrollbar::-webkit-scrollbar-track {
+  background: #001F3F; /* Dark Navy Blue to blend with background */
+  border-radius: 10px;
+}
+
+/* Handle */
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffe492; /* Yellow to match your theme */
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Handle on hover */
+.no-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffe492 /* Slightly darker yellow on hover */
+}
+
 
 @layer base {
   * {

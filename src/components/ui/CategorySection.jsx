@@ -19,7 +19,7 @@ const categories = [
   {
     name: "Hand Tools",
     subcategories: [
-      { name: "Spanners", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742313533/pinnacle-tools/staticassets/spanners_c6h3qy.jpg" },
+      { name: "Spanners", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742341200/pinnacle-tools/staticassets/spanners_2_zx7olb.jpg" },
       { name: "Screw Drivers", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742313529/pinnacle-tools/staticassets/screwdrivers_pepewt.jpg" },
       { name: "Pipe Wrenches", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742313513/pinnacle-tools/staticassets/pipe_wrenches_oiorkv.jpg" },
       { name: "Allen Keys", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742313512/pinnacle-tools/staticassets/allen_keys_gzekgi.jpg" },
@@ -38,9 +38,9 @@ const categories = [
   {
     name: "Pneumatic Tools",
     subcategories: [
-      { name: "Impact Wrench", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742313513/pinnacle-tools/staticassets/impact_wrench_tv5vms.jpg" },
+      { name: "Impact Wrench", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742341081/pinnacle-tools/staticassets/impact_wrench_jorsr6.jpg" },
       { name: "Nut Revitors", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742314698/pinnacle-tools/staticassets/8fe56f62-e59a-47de-a048-c55719e4da45.png" },
-      { name: "Pop Revitors", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742314698/pinnacle-tools/staticassets/8fe56f62-e59a-47de-a048-c55719e4da45.png" },
+      { name: "Pop Revitors", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742341424/pinnacle-tools/staticassets/pop_rivetor_eib4hw.jpg" },
       { name: "Spray Gun", image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742313533/pinnacle-tools/staticassets/spray_gun_dwjrd6.jpg" },
     ],
   },

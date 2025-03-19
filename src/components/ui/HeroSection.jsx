@@ -26,7 +26,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="z-20 text-center px-6 md:px-12 max-w-3xl"
+        className="z-20 text-center px-6 md:px-12 max-w-4xl"
       >
         {/* Main Heading */}
         <motion.h1
@@ -35,7 +35,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg"
         >
-          Pinnacle Tools Center
+        Professional Tools for Every Project
         </motion.h1>
 
         {/* Subheading */}
@@ -45,7 +45,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-md md:text-xl text-gray-200 mb-8"
         >
-          Discover premium router bits and CNC tools, crafted for professionals and DIY enthusiasts. Innovation meets quality.
+          Transform your work with Pinnacle Tools Center's premium collection. From precision woodworking equipment to powerful industrial machinery, we provide quality tools professionals trust. Serving Bangalore's skilled craftsmen and contractors for over a decade with expertise and excellence
         </motion.p>
 
         {/* Trust Statement */}

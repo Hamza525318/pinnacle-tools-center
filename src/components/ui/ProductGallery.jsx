@@ -7,32 +7,31 @@ import Link from "next/link";
 const galleryItems = [
   {
     title: "Power Tools",
-    description: "Reliable and powerful tools for all projects.",
+    description: "High-performance tools for precision and efficiency.",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742037755/pinnacle-tools/staticassets/power-tools_ycbgc6.jpg",
     link: "/products",
   },
   {
-    title: "Cordless tools",
-    description: "Portable and powerful tools offering flexibility",
+    title: "Cordless Tools",
+    description: "Portable, powerful, and flexible for any task.",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038007/pinnacle-tools/staticassets/d00fe31c-76ae-433c-83cd-c7fab3b7cead.png",
     link: "/products",
   },
   {
-    title: "Hand tools",
-    description: "Reliable and durable hand tools",
+    title: "Hand Tools",
+    description: "Durable, reliable, and essential for every job.",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038376/pinnacle-tools/staticassets/hand-tools_jvxbc4.jpg",
     link: "/products",
   },
-  
   {
-    title: "Wood Working tools",
-    description: "Sharp and durable blades for fine woodwork.",
+    title: "Woodworking Tools",
+    description: "Precision blades and tools for fine woodwork.",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038622/pinnacle-tools/staticassets/wood-working-tools_y13xyy.jpg",
     link: "/products",
   },
   {
     title: "Pneumatic Tools",
-    description: "Heavy-duty air-powered tools for maximum performance",
+    description: "Heavy-duty, air-powered tools for top performance.",
     image: "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742038998/pinnacle-tools/staticassets/pneumatic-tools_ovvl1w.jpg",
     link: "/products",
   },

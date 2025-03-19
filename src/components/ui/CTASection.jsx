@@ -7,7 +7,7 @@ export default function CTASection() {
   return (
     <section
       className="w-full py-16 px-6 md:px-12 relative bg-cover bg-center"
-      style={{ backgroundImage: "url('./assets/cta-section-01.webp')" }}
+      style={{ backgroundImage: "url('https://res.cloudinary.com/dduzbqxt7/image/upload/v1742343083/pinnacle-tools/staticassets/cta-section-01_wjn79z.webp')" }}
     >
       {" "}
       {/* Replace with your actual image */}
