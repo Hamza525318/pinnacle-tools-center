@@ -11,26 +11,26 @@ const testimonials = [
     id: 1,
     review: "Amazing quality tools! Highly reliable and efficient.",
     rating: 5,
-    name: "Wade Warren",
+    name: "Hamza Mustafa",
     role: "Customer",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    image: "https://randomuser.me/api/portraits/men/35.jpg",
   },
   {
     id: 2,
     review: "Great customer support and fast delivery.",
     rating: 4,
-    name: "Kristin Watson",
+    name: "Mutafa",
     role: "Customer",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    image: "https://randomuser.me/api/portraits/men/35.jpg",
   },
   {
     id: 3,
     review:
       "Top-notch precision tools. A must-buy for professionals! Highly recommended.",
     rating: 5,
-    name: "Esther Howard",
+    name: "Hamza Mustafa",
     role: "Designer",
-    image: "https://randomuser.me/api/portraits/women/72.jpg",
+    image: "https://randomuser.me/api/portraits/men/35.jpg",
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const testimonials = [
     rating: 4,
     name: "Jane Smith",
     role: "DIY Enthusiast",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    image: "https://randomuser.me/api/portraits/men/65.jpg",
   },
 ];
 

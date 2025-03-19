@@ -24,7 +24,10 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact-us" className="w-full bg-gradient-to-tr from-[#002244] to-[#004080] text-white py-16 px-4">
+    <section
+      id="contact-us"
+      className="w-full bg-gradient-to-tr from-[#002244] to-[#004080] text-white py-16 px-4"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-12">
@@ -32,7 +35,8 @@ export default function ContactSection() {
             Get in Touch with Us
           </h2>
           <p className="text-gray-300 font-oswald mt-4 text-lg">
-            Have questions? We'd love to hear from you. Send us a message and we'll get back to you shortly.
+            Have questions? We'd love to hear from you. Send us a message and
+            we'll get back to you shortly.
           </p>
         </div>
 
@@ -69,7 +73,9 @@ export default function ContactSection() {
                   <MapPin className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-lg text-[#003366]">Location</h3>
+                  <h3 className="font-medium text-lg text-[#003366]">
+                    Location
+                  </h3>
                   <p className="text-gray-600">Sp road, Bangalore</p>
                 </div>
               </div>
@@ -144,7 +150,7 @@ export default function ContactSection() {
         <div className="mt-12 rounded-xl overflow-hidden shadow-lg">
           <iframe
             title="Google Maps Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509366!2d144.95373631531592!3d-37.81627977975186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577a6d12a5b8b1e!2s102%20Street%2C%20Hamilton!5e0!3m2!1sen!2sus!4v1616744850916!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1108457495175!2d77.57635167454647!3d12.964758315029288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15407f4c8235%3A0xefe3d4be9767fb00!2sPinnacle%20Tools%20Centre!5e0!3m2!1sen!2sin!4v1742393667992!5m2!1sen!2sin"
             width="100%"
             height="400"
             allowFullScreen={true}
