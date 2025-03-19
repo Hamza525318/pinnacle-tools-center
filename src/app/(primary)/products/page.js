@@ -8,31 +8,31 @@ import PaginationComponent from "../../../components/ui/Pagination";
 const products = [
   {
     id: 1,
-    name: "Power Tool Set",
-    price: 12000,
-    oldPrice: 15000,
-    image: "/assets/gallery/power_tools_01.webp",
+    name: "Straight Router Bits",
+    brands: ["Jon Bhandari", "Perfect", "Licon"],
+    image:
+      "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742037393/pinnacle-tools/staticassets/router-bits_1_qhuxoe.jpg",
   },
   {
     id: 2,
-    name: "CNC Router Bit",
-    price: 18000,
-    oldPrice: 20000,
-    image: "/assets/gallery/router_bits_01.webp",
+    name: "Straight Router Bits",
+    brands: ["Jon Bhandari", "Perfect", "Licon"],
+    image:
+      "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742037393/pinnacle-tools/staticassets/router-bits_1_qhuxoe.jpg",
   },
   {
     id: 3,
-    name: "V-Groove Blade",
-    price: 9500,
-    oldPrice: 12000,
-    image: "/assets/gallery/router_bits_01.webp",
+    name: "Straight Router Bits",
+    brands: ["Jon Bhandari", "Perfect", "Licon"],
+    image:
+      "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742037393/pinnacle-tools/staticassets/router-bits_1_qhuxoe.jpg",
   },
   {
     id: 4,
-    name: "Industrial Drill Machine",
-    price: 25000,
-    oldPrice: 28000,
-    image: "/assets/gallery/router_bits_01.webp",
+    name: "Straight Router Bits",
+    brands: ["Jon Bhandari", "Perfect", "Licon"],
+    image:
+      "https://res.cloudinary.com/dduzbqxt7/image/upload/v1742037393/pinnacle-tools/staticassets/router-bits_1_qhuxoe.jpg",
   },
 ];
 
