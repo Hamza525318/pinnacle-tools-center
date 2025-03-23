@@ -11,8 +11,8 @@ export default function ProductCard({ product }) {
   const isItemInCart = cart.some((item) => item.id === product.id);
 
   return (
-    <Link href={`/product/${product.id}`} className="block">
-      <div className="border border-gray-200 p-3 rounded-lg shadow-sm hover:shadow-md transition flex flex-col h-full">
+    <div className="border border-gray-200 p-3 rounded-lg shadow-sm hover:shadow-md transition flex flex-col h-full">
+      <Link href={`/product/${product.id}`} className="block flex-grow">
         {/* Product Image */}
         <div className="relative">
           <img
@@ -34,29 +34,29 @@ export default function ProductCard({ product }) {
             {product.brands.join(", ")}
           </div>
         </div>
+      </Link>
 
-        {/* ✅ Cart Icon at Right-Most End */}
-        <div className="flex justify-end">
-          <button
-            className="p-2 rounded-full shadow-md hover:bg-gray-100 transition"
-            onClick={(e) => {
-              e.preventDefault();
+      {/* Cart Icon at Right-Most End */}
+      <div className="flex justify-end">
+        <button
+          className="p-2 rounded-full shadow-md hover:bg-gray-100 transition"
+          onClick={(e) => {
+            e.preventDefault();
 
-              if (!isItemInCart) {
-                addToCart(product);
-                toast.success("Item has been added to cart 🛒", {
-                  action: {
-                    label: "Undo",
-                    onClick: () => console.log("Undo clicked"),
-                  },
-                });
-              }
-            }}
-          >
-            <ShoppingCart className="h-5 w-5 text-gray-700" />
-          </button>
-        </div>
+            if (!isItemInCart) {
+              addToCart(product);
+              toast.success("Item has been added to cart ", {
+                action: {
+                  label: "Undo",
+                  onClick: () => console.log("Undo clicked"),
+                },
+              });
+            }
+          }}
+        >
+          <ShoppingCart className="h-5 w-5 text-gray-700" />
+        </button>
       </div>
-    </Link>
+    </div>
   );
 }

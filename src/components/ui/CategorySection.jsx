@@ -144,18 +144,19 @@ export default function CategoriesSection() {
             </h3>
             <div className="flex space-x-6 overflow-x-auto pb-4 no-scrollbar">
               {category.subcategories.map((sub, subIndex) => (
-                <Link href={"/products"}>
                   <motion.div
                     key={subIndex}
                     whileHover={{ scale: 1.07 }}
                     className="relative min-w-[240px] h-56 rounded-lg shadow-lg overflow-hidden cursor-pointer"
                   >
                     {/* Background Image for Each Subcategory */}
+                    <Link href={'/products'}>
                     <img
                       src={sub.image}
                       alt={sub.name}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
+                    </Link>
 
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300 hover:bg-opacity-70"></div>
@@ -173,7 +174,6 @@ export default function CategoriesSection() {
                       </Link>
                     </div>
                   </motion.div>
-                </Link>
               ))}
             </div>
           </div>
